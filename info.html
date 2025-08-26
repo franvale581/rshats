@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RS Hats</title>
+  <link rel="stylesheet" href="styles/info.css">
+  <link rel="shortcut icon" href="./assets/logo/logo-removebg-preview.png" type="image/x-icon">
+</head>
+<body>
+  <div class="info-container">
+    <h1 id="product-name"></h1>
+    <p id="product-description"></p>
+    <button class="buy-now" onclick="window.location.href='shop-now.html'">Back to shop</button>
+  </div>
+
+  <!-- DATA JS -->
+  <script src="data.js"></script>
+  <!-- MAIN JS -->
+  <script>
+    const selectedId = Number(localStorage.getItem("selectedProductId"));
+    const product = gorras.find(p => p.id === selectedId);
+
+    if (product) {
+      // Video de fondo
+      const videoEl = document.createElement('video');
+      videoEl.src = product.img;
+      videoEl.autoplay = true;
+      videoEl.loop = true;
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      videoEl.className = 'video-bg';
+      document.body.appendChild(videoEl);
+
+      // Info dinámica
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-description').textContent = product.descripcion;
+    }
+  </script>
+</body>
+</html>
