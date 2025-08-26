@@ -162,6 +162,25 @@
     <!-- EmailJS SDK -->
     <script src="https://kit.fontawesome.com/a0c4fed9cc.js" crossorigin="anonymous"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("intro-video");
+            const enterBtn = document.getElementById("enter-btn");
+
+            video.pause();
+            video.currentTime = 0;
+
+            enterBtn.addEventListener("click", () => {
+                enterBtn.style.display = "none";
+                video.play();
+            });
+
+            video.addEventListener("ended", () => {
+                window.location.href = "home.html";
+            });
+        });
+    </script>
+
     <script src="./data.js" defer></script>
     <script src="./main.js" defer></script>
 </body>

@@ -15,8 +15,11 @@
 }
 
 body {
-    background: url('../assets/background/bg-2.jpg') no-repeat center center fixed;
+    background: url('../assets/background/bg-2.jpg') no-repeat center center;
     background-size: cover;
+    background-attachment: scroll;
+    /* en vez de fixed safari bug*/
+
     font-family: "Kanit", sans-serif;
 }
 
@@ -111,7 +114,8 @@ html {
     top: 0;
     left: -400px;
     width: 400px;
-    height: 100vh;
+    height: -webkit-fill-available;
+    min-height: 100vh;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding-top: 2rem;
@@ -191,7 +195,8 @@ html {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: -webkit-fill-available;
+    min-height: 100vh;
     z-index: 900;
     opacity: 0;
     pointer-events: none;
@@ -263,7 +268,8 @@ html {
     right: -450px;
     /* fuera de pantalla */
     width: 450px;
-    height: 100vh;
+    height: -webkit-fill-available;
+    min-height: 100vh;
     padding: 50px 30px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
