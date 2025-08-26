@@ -17,38 +17,25 @@
   <!-- DATA JS -->
   <script src="data.js"></script>
   <!-- MAIN JS -->
-<script>
-  const selectedId = Number(localStorage.getItem("selectedProductId"));
-  const product = gorras.find(p => p.id === selectedId);
+  <script>
+    const selectedId = Number(localStorage.getItem("selectedProductId"));
+    const product = gorras.find(p => p.id === selectedId);
 
-  if (product) {
-    // Crear video de fondo
-    const videoEl = document.createElement('video');
-    videoEl.src = product.img;
-    videoEl.loop = true;
-    videoEl.muted = true;
-    videoEl.playsInline = true;
-    videoEl.className = 'video-bg';
-    document.body.appendChild(videoEl);
+    if (product) {
+      // Video de fondo
+      const videoEl = document.createElement('video');
+      videoEl.src = product.img;
+      videoEl.autoplay = true;
+      videoEl.loop = true;
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      videoEl.className = 'video-bg';
+      document.body.appendChild(videoEl);
 
-    // Intentar reproducir automáticamente
-    const tryPlayVideo = () => {
-      videoEl.play().catch(() => {
-        // Si Safari bloquea, reproducir en el primer click del usuario
-        const clickPlay = () => {
-          videoEl.play().catch(() => {});
-          document.removeEventListener("click", clickPlay);
-        };
-        document.addEventListener("click", clickPlay);
-      });
-    };
-
-    tryPlayVideo();
-
-    // Info dinámica
-    document.getElementById('product-name').textContent = product.name;
-    document.getElementById('product-description').textContent = product.descripcion;
-  }
-</script>
+      // Info dinámica
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-description').textContent = product.descripcion;
+    }
+  </script>
 </body>
 </html>
