@@ -59,8 +59,8 @@ body, html {
 }
 
 .buy-now {
-  background-color: var(--bg-red);
-  color: var(--white-grey);
+  background-color: rgba(211, 1, 1, 0.836);
+  color: grey;
   border: none;
   padding: 0.9rem 2rem;
   font-size: 1rem;
@@ -73,10 +73,12 @@ body, html {
   text-transform: uppercase;
   font-family: "Kanit", sans-serif;
   text-decoration: none;
-
+  transition: all 0.3s ease;
 }
 
 .buy-now:hover {
   background-color: #d2130f;
+  color: var(--white-grey);
   transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }

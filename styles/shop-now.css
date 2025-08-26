@@ -372,12 +372,12 @@ html {
 .up {
     background-color: transparent;
     cursor: pointer;
-    border: 1px solid var(--white-grey);
+    font-size: 2rem;
 }
 
 .down {
     background-color: transparent;
-    border: 1px solid var(--white-grey);
+    font-size: 2rem;
     cursor: pointer;
 }
 
