@@ -21,15 +21,25 @@
 }
 
 body {
-    background-image: url(../assets/background/bg-2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* Escala la imagen para que cubra todo */
-    background-position: center;
-    /* Centra la imagen */
-    background-attachment: fixed;
-    /* mantiene el fondo fijo */
+  position: relative;
+  min-height: 100vh;
+  font-family: "Kanit", sans-serif;
+  overflow-x: hidden;
 }
+
+/* el fondo fijo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../assets/background/bg-2.jpg) no-repeat center center;
+  background-size: cover;
+  z-index: -1; /* queda detrás de todo */
+}
+
 
 .main-section {
     display: flex;
