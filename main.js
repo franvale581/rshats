@@ -70,8 +70,8 @@ function iniciarApp() {
       <div class="product">
         ${mediaElement}
         <div class="product-text-container">
-          <h3 class="product-name">${name}</h3>
-          <h2 class="created-by-product">${brand}</h2>
+          <h3 class="product-name">"${name}"</h3>
+          <h2 class="created-by-product">By ${brand}</h2>
           <p class="product-price">$${price.toFixed(2)}</p>
         </div>
         <div class="btn-product-container">

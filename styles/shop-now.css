@@ -27,6 +27,10 @@ html {
     scroll-behavior: smooth;
 }
 
+#main {
+    background: #0f1013ce;
+}
+
 
 /* Contenido encima del video utilizar z-index: 1 */
 
@@ -43,7 +47,7 @@ html {
     font-style: italic;
     white-space: nowrap;
     overflow: hidden;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 999;
@@ -532,7 +536,7 @@ html {
 }
 
 .product-name {
-    font-weight: 400;
+    font-weight: 600;
     font-size: 1.8rem;
     text-transform: uppercase;
     color: var(--white-grey);
@@ -542,7 +546,7 @@ html {
     font-weight: 600;
     margin-top: -10px;
     font-style: italic;
-    color: var(--bg-red);
+    color: rgba(253, 29, 29, 0.473);
     font-size: 1.3rem;
     letter-spacing: 1px;
 }
@@ -550,7 +554,8 @@ html {
 .product-price {
     font-size: 1.8rem;
     font-weight: 300;
-    color: rgb(173, 173, 173);
+    color: rgb(214, 214, 214);
+    font-style: italic;
 }
 
 .btn-product-container {

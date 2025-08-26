@@ -5,7 +5,7 @@
     brand: "Rs Hats",
     price: 99.99,
     img: "./assets/product/gorra.mp4",
-    descripcion: "Edicion especial confeccionada con los mejores materiales.",
+    descripcion: "RS Hats presenta su primer drop: un manifiesto de fe y firmeza para quienes caminan con propósito.",
     cartimg: "./assets/product/gorra.jpg",
     imagenesInfo: [
       "../assets/products/product-1.png",

@@ -171,6 +171,12 @@ body::before {
     animation: fadeUp 0.8s ease forwards;
 }
 
+.main-icons-container {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: .99s;
+}
+
 /* DELAY */
 .main-links-container .main-link:nth-child(1) {
     animation-delay: 0.6s;
