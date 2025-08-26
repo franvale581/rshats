@@ -46,7 +46,7 @@ body::before {
     justify-content: center;
     align-items: center;
     width: 100%;
-
+    background: rgba(0, 0, 0, 0.459);
 }
 
 .main-container {
@@ -75,7 +75,7 @@ body::before {
 .date-time {
     font-weight: 400;
     font-size: 1.2rem;
-    color: var(--white);
+    color: #f8f9fa94;
     text-align: center;
     font-family: "Kanit", sans-serif;
     margin-top: -10rem;
@@ -99,7 +99,25 @@ body::before {
 
 .main-link a:hover {
     transform: scale(1.1);
-    color: #f8f9fa63;
+    color: #f8f9fada;
+    transition: all .2s ease-in-out;
+}
+
+.main-icons-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: 2rem;
+}
+
+.main-icons-container a {
+    color:#f8f9fada;
+    transition: all .2s ease-in-out;
+}
+
+.main-icons-container a:hover {
+    transform: scale(1.2);
+    color: #ffffff;
     transition: all .2s ease-in-out;
 }
 
