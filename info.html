@@ -22,15 +22,32 @@
     const product = gorras.find(p => p.id === selectedId);
 
     if (product) {
-      // Video de fondo
+      // Crear video de fondo
       const videoEl = document.createElement('video');
       videoEl.src = product.img;
-      videoEl.autoplay = true;
       videoEl.loop = true;
       videoEl.muted = true;
       videoEl.playsInline = true;
       videoEl.className = 'video-bg';
+      videoEl.preload = 'auto'; // cargar el primer frame
+      videoEl.autoplay = false; // no autoplay directo
       document.body.appendChild(videoEl);
+
+      // Mostrar primer frame
+      videoEl.addEventListener('loadeddata', () => {
+        videoEl.currentTime = 0;
+      });
+
+      // Función para reproducir el video
+      const startVideo = () => {
+        videoEl.play().catch(() => { });
+        document.removeEventListener("click", startVideo);
+        document.removeEventListener("touchstart", startVideo);
+      };
+
+      // Escuchar cualquier interacción del usuario
+      document.addEventListener("click", startVideo);
+      document.addEventListener("touchstart", startVideo);
 
       // Info dinámica
       document.getElementById('product-name').textContent = product.name;
@@ -38,4 +55,5 @@
     }
   </script>
 </body>
+
 </html>
