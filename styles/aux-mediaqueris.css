@@ -271,6 +271,15 @@
         height: auto;
         display: block;
     }
+
+    .bottom-rights p {
+    font-family: "Kanit", sans-serif;
+    color: var(--white-grey);
+    letter-spacing: 1px;
+    font-style: italic;
+    font-weight: 100;
+    font-size: .7rem;
+}
 }
 
 @media (max-width: 465px) {

@@ -36,11 +36,12 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+
 }
 
 .main-container {
     width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,8 +58,8 @@ body {
 }
 
 .main-logo img {
-    height: 25rem;
-    margin-bottom: 2rem;
+    height: 9rem;
+    margin-bottom: 7rem;
 }
 
 .date-time {
@@ -67,11 +68,11 @@ body {
     color: var(--white);
     text-align: center;
     font-family: "Kanit", sans-serif;
-    margin-top: -13rem;
+    margin-top: -10rem;
 }
 
 .main-links-container {
-    margin-top: -1rem;
+    margin-top: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
