@@ -96,6 +96,17 @@
         height: 9rem;
     }
 
+        .item-handler {
+        flex-direction: column-reverse;
+        gap: 0;
+        padding-left: 2rem;
+    }
+
+    .cart-item {
+        padding: 0;
+        padding-left: 1rem;
+    }
+
 }
 
 @media (max-width: 426px) {
@@ -107,6 +118,12 @@
     /* carro item */
     .item-handler {
         flex-direction: column-reverse;
+        gap: 0;
+        padding-left: 2rem;
+    }
+
+    .cart-item {
+        padding: 0;
     }
 }
 
