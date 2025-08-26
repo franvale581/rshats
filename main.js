@@ -193,7 +193,7 @@ ${resumen}
 Total: $${getCartTotal().toFixed(2)}
     `;
 
-    const numeroNegocio = "5493562564401"; // <-- reemplazá con tu número
+    const numeroNegocio = "5493562437672"; // <-- reemplazá con tu número
 
     const url = `https://wa.me/${numeroNegocio}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
