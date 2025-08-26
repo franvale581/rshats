@@ -63,7 +63,7 @@ function iniciarApp() {
     productsContainer.innerHTML = gorras.map(({ id, name, brand, price, img }) => {
       // si es un .mp4 -> video, si no -> imagen
       const mediaElement = img.endsWith(".mp4")
-        ? `<video src="${img}" autoplay loop muted playsinline class="product-media"></video>`
+        ? `<video src="${img}" loop muted playsinline class="product-media"></video>`
         : `<img src="${img}" alt="product" class="product-media">`;
 
       return `
@@ -81,35 +81,49 @@ function iniciarApp() {
       </div>
     `;
     }).join("");
+
+    // intentar reproducir videos después de renderizar
+    const videos = document.querySelectorAll("video.product-media");
+    videos.forEach(video => {
+      video.muted = true;
+      video.playsInline = true;
+      video.play().catch(() => {
+        // si Safari bloquea, reproducir en el primer click del usuario
+        const tryPlay = () => {
+          video.play().catch(() => {});
+          document.removeEventListener("click", tryPlay);
+        };
+        document.addEventListener("click", tryPlay);
+      });
+    });
   };
 
   // ----------- CARRITO -----------
 
   const saveCart = () => localStorage.setItem("cart", JSON.stringify(cart));
 
-const renderCart = () => {
-  if (!productsCart) return;
-  if (!cart.length) {
-    productsCart.innerHTML = `<p class="empty-msg">There are no products in the cart.</p>`;
-    return;
-  }
-  productsCart.innerHTML = cart.map(({ id, name, price, cartimg, quantity }) => `
-    <div class="cart-item">
-      <img src="${cartimg}" alt="producto" />
-      <div class="item-info">
-        <h3 class="item-title">${name}</h3>
-        <p class="item-bid">Price</p>
-        <span class="item-price">$ ${price}</span>
+  const renderCart = () => {
+    if (!productsCart) return;
+    if (!cart.length) {
+      productsCart.innerHTML = `<p class="empty-msg">There are no products in the cart.</p>`;
+      return;
+    }
+    productsCart.innerHTML = cart.map(({ id, name, price, cartimg, quantity }) => `
+      <div class="cart-item">
+        <img src="${cartimg}" alt="producto" />
+        <div class="item-info">
+          <h3 class="item-title">${name}</h3>
+          <p class="item-bid">Price</p>
+          <span class="item-price">$ ${price}</span>
+        </div>
+        <div class="item-handler">
+          <span class="quantity-handler down" data-id="${id}">-</span>
+          <span class="item-quantity">${quantity}</span>
+          <span class="quantity-handler up" data-id="${id}">+</span>
+        </div>
       </div>
-      <div class="item-handler">
-        <span class="quantity-handler down" data-id="${id}">-</span>
-        <span class="item-quantity">${quantity}</span>
-        <span class="quantity-handler up" data-id="${id}">+</span>
-      </div>
-    </div>
-  `).join("");
-};
-
+    `).join("");
+  };
 
   const getCartTotal = () => cart.reduce((acc, cur) => cur.price * cur.quantity + acc, 0);
 
