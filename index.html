@@ -17,7 +17,7 @@
             <div class="main-logo"><img src="./assets/logo/logo-removebg-preview.png" alt="RS HATS"></div>
             <p id="date-time" class="date-time"></p>
             <ul class="main-links-container">
-                <li class="main-link"><a href="./shop-now.html">SHOP NOW</a></li>
+                <li class="main-link"><a href="./shop-now.html" id="goShopBtn">SHOP NOW</a></li>
             </ul>
             <div class="main-icons-container">
                 <div class="main-icons-container">
@@ -75,6 +75,13 @@
         // Actualiza al cargar y luego cada segundo
         actualizarFechaHora();
         setInterval(actualizarFechaHora, 1000);
+    </script>
+
+    <script>
+        document.getElementById("goShopBtn").addEventListener("click", () => {
+            localStorage.setItem("startVideo", "true");
+            window.location.href = "shop-now.html";
+        });
     </script>
     <script src="./main.js"></script>
 </body>
