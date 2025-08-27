@@ -163,6 +163,21 @@
     <!-- EmailJS SDK -->
     <script src="https://kit.fontawesome.com/a0c4fed9cc.js" crossorigin="anonymous"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.getElementById("product-video");
+
+            // Revisar si venimos de index.html
+            if (localStorage.getItem("startVideo") === "true") {
+                video.muted = true; // asegurarse
+                video.play().catch(() => {
+                    // fallback si autoplay falla
+                    console.log("Autoplay bloqueado, requiere interacción");
+                });
+                localStorage.removeItem("startVideo");
+            }
+        });
+    </script>
 
     <script src="./data.js" defer></script>
     <script src="./main.js" defer></script>
