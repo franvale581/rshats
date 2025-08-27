@@ -905,3 +905,25 @@ html {
     font-size: 1.4rem;
   }
 }
+
+
+.audio-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: background 0.3s ease;
+}
+
+.audio-toggle:hover {
+  background: rgba(0,0,0,0.9);
+}
+
