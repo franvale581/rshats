@@ -91,11 +91,11 @@ body, html {
 @media (max-width: 371px) {
 
   .info-container h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .info-container p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .buy-now {
