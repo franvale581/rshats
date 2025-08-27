@@ -20,6 +20,14 @@ function iniciarApp() {
   const completeSection = document.querySelector('.complete-buy-section');
   const addModal = document.querySelector('.add-modal');
 
+  // ----------- REFERENCIAS MODAL INFO -----------
+  const infoModal = document.getElementById('infoModal');
+  const infoCloseBtn = document.getElementById('infoCloseBtn');
+  const infoName = document.getElementById('infoName');
+  const infoBrand = document.getElementById('infoBrand');
+  const infoPrice = document.getElementById('infoPrice');
+  const infoDescription = document.getElementById('infoDescription');
+
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // ----------- MENÚ Y CARRITO -----------
@@ -61,7 +69,6 @@ function iniciarApp() {
   const renderProducts = () => {
     if (!productsContainer || typeof gorras === "undefined") return;
     productsContainer.innerHTML = gorras.map(({ id, name, brand, price, img }) => {
-      // si es un .mp4 -> video, si no -> imagen
       const mediaElement = img.endsWith(".mp4")
         ? `<video src="${img}" autoplay loop muted playsinline class="product-media"></video>`
         : `<img src="${img}" alt="product" class="product-media">`;
@@ -87,32 +94,30 @@ function iniciarApp() {
 
   const saveCart = () => localStorage.setItem("cart", JSON.stringify(cart));
 
-const renderCart = () => {
-  if (!productsCart) return;
-  if (!cart.length) {
-    productsCart.innerHTML = `<p class="empty-msg">There are no products in the cart.</p>`;
-    return;
-  }
-  productsCart.innerHTML = cart.map(({ id, name, price, cartimg, quantity }) => `
-    <div class="cart-item">
-      <img src="${cartimg}" alt="producto" />
-      <div class="item-info">
-        <h3 class="item-title">${name}</h3>
-        <p class="item-bid">Price</p>
-        <span class="item-price">$ ${price}</span>
+  const renderCart = () => {
+    if (!productsCart) return;
+    if (!cart.length) {
+      productsCart.innerHTML = `<p class="empty-msg">There are no products in the cart.</p>`;
+      return;
+    }
+    productsCart.innerHTML = cart.map(({ id, name, price, cartimg, quantity }) => `
+      <div class="cart-item">
+        <img src="${cartimg}" alt="producto" />
+        <div class="item-info">
+          <h3 class="item-title">${name}</h3>
+          <p class="item-bid">Price</p>
+          <span class="item-price">$ ${price}</span>
+        </div>
+        <div class="item-handler">
+          <span class="quantity-handler down" data-id="${id}">-</span>
+          <span class="item-quantity">${quantity}</span>
+          <span class="quantity-handler up" data-id="${id}">+</span>
+        </div>
       </div>
-      <div class="item-handler">
-        <span class="quantity-handler down" data-id="${id}">-</span>
-        <span class="item-quantity">${quantity}</span>
-        <span class="quantity-handler up" data-id="${id}">+</span>
-      </div>
-    </div>
-  `).join("");
-};
-
+    `).join("");
+  };
 
   const getCartTotal = () => cart.reduce((acc, cur) => cur.price * cur.quantity + acc, 0);
-
   const showCartTotal = () => { if (total) total.innerHTML = `$ ${getCartTotal().toFixed(2)}`; };
 
   const updateCartBubble = () => {
@@ -138,15 +143,34 @@ const renderCart = () => {
     }, 2000);
   };
 
+  // ----------- MODAL INFO PRODUCTO -----------
+
+  const openInfoModal = (productId) => {
+    const product = gorras.find(p => p.id === productId);
+    if (!product) return;
+
+    infoName.textContent = product.name;
+    infoBrand.textContent = `By ${product.brand}`;
+    infoPrice.textContent = `$${product.price.toFixed(2)}`;
+    infoDescription.textContent = product.descripcion || "No description available.";
+
+    infoModal.classList.add('show');
+  };
+
+  const closeInfoModal = () => infoModal.classList.remove('show');
+
+  if (infoCloseBtn) infoCloseBtn.addEventListener('click', closeInfoModal);
+
   // ----------- MANEJO DE PRODUCTOS -----------
 
   const handleProductClick = (e) => {
     if (!gorras) return;
+
     if (e.target.classList.contains("btn-info")) {
       const id = Number(e.target.dataset.id);
-      localStorage.setItem("selectedProductId", id);
-      window.location.href = "info.html";
+      openInfoModal(id); // abre modal info
     }
+
     if (e.target.classList.contains("btn-add")) {
       const id = Number(e.target.dataset.id);
       const product = gorras.find(p => p.id === id);
@@ -193,7 +217,7 @@ ${resumen}
 Total: $${getCartTotal().toFixed(2)}
     `;
 
-    const numeroNegocio = "5493562437672"; // <-- reemplazá con tu número
+    const numeroNegocio = "5493562437672";
 
     const url = `https://wa.me/${numeroNegocio}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
