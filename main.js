@@ -145,21 +145,42 @@ function iniciarApp() {
 
   // ----------- MODAL INFO PRODUCTO -----------
 
+  // MODAL INFO PRODUCTO CON POP-IN / POP-OUT
   const openInfoModal = (productId) => {
     const product = gorras.find(p => p.id === productId);
     if (!product) return;
 
+    // Setear contenido
     infoName.textContent = product.name;
     infoBrand.textContent = `By ${product.brand}`;
     infoPrice.textContent = `$${product.price.toFixed(2)}`;
     infoDescription.textContent = product.descripcion || "No description available.";
 
+    // Abrir modal con animación pop-in
     infoModal.classList.add('show');
+    const modalContent = infoModal.querySelector('.info-modal-content');
+    modalContent.classList.remove('pop-out');
   };
 
-  const closeInfoModal = () => infoModal.classList.remove('show');
+  const closeInfoModal = () => {
+    const modalContent = infoModal.querySelector('.info-modal-content');
+    modalContent.classList.add('pop-out');
 
+    // Esperar que termine la animación antes de ocultar modal
+    modalContent.addEventListener('animationend', () => {
+      infoModal.classList.remove('show');
+      modalContent.classList.remove('pop-out');
+    }, { once: true });
+  };
+
+  // Eventos de cierre
   if (infoCloseBtn) infoCloseBtn.addEventListener('click', closeInfoModal);
+  if (infoModal) {
+    infoModal.addEventListener('click', (e) => {
+      if (e.target === infoModal) closeInfoModal(); // click fuera del contenido
+    });
+  }
+
 
   // ----------- MANEJO DE PRODUCTOS -----------
 
