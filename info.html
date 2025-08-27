@@ -19,43 +19,50 @@
   <!-- DATA JS -->
   <script src="data.js"></script>
   <!-- MAIN JS -->
-  <script>
-    const selectedId = Number(localStorage.getItem("selectedProductId"));
-    const product = gorras.find(p => p.id === selectedId);
+<script>
+const selectedId = Number(localStorage.getItem("selectedProductId"));
+const product = gorras.find(p => p.id === selectedId);
 
-    if (product) {
-      // Crear video de fondo
-      const videoEl = document.createElement('video');
-      videoEl.src = product.img;
-      videoEl.loop = true;
-      videoEl.muted = true;
-      videoEl.playsInline = true;
-      videoEl.className = 'video-bg';
-      videoEl.preload = 'auto'; // cargar el primer frame
-      videoEl.autoplay = false; // no autoplay directo
-      document.body.appendChild(videoEl);
+if (product) {
+  // Crear video de fondo
+  const videoEl = document.createElement('video');
+  videoEl.src = product.img;
+  videoEl.loop = true;
+  videoEl.muted = true;
+  videoEl.playsInline = true;
+  videoEl.className = 'video-bg';
+  videoEl.preload = 'auto';
+  videoEl.autoplay = false;
+  videoEl.style.opacity = 0; // inicio invisible para fade-in
+  videoEl.style.transition = "opacity 1s ease"; // transición suave
+  document.body.appendChild(videoEl);
 
-      // Mostrar primer frame
-      videoEl.addEventListener('loadeddata', () => {
-        videoEl.currentTime = 0;
-      });
+  // Mostrar primer frame
+  videoEl.addEventListener('loadeddata', () => {
+    videoEl.currentTime = 0;
+    videoEl.style.opacity = 1; // mostrar frame inicial
+  });
 
-      // Función para reproducir el video
-      const startVideo = () => {
-        videoEl.play().catch(() => { });
-        document.removeEventListener("click", startVideo);
-        document.removeEventListener("touchstart", startVideo);
-      };
+  // Función para reproducir el video con fade-in
+  const startVideo = () => {
+    videoEl.play().then(() => {
+      // cuando arranca el video, aseguramos que el fade-in ya está activo
+      videoEl.style.opacity = 1;
+    }).catch(() => { /* no hacer nada si falla */ });
+    document.removeEventListener("click", startVideo);
+    document.removeEventListener("touchstart", startVideo);
+  };
 
-      // Escuchar cualquier interacción del usuario
-      document.addEventListener("click", startVideo);
-      document.addEventListener("touchstart", startVideo);
+  // Escuchar cualquier interacción del usuario
+  document.addEventListener("click", startVideo);
+  document.addEventListener("touchstart", startVideo);
 
-      // Info dinámica
-      document.getElementById('product-name').textContent = product.name;
-      document.getElementById('product-description').textContent = product.descripcion;
-    }
-  </script>
+  // Info dinámica
+  document.getElementById('product-name').textContent = product.name;
+  document.getElementById('product-description').textContent = product.descripcion;
+}
+</script>
+
 </body>
 
 </html>

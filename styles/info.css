@@ -86,3 +86,20 @@ body, html {
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 }
+
+
+@media (max-width: 371px) {
+
+  .info-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .info-container p {
+    font-size: 0.9rem;
+  }
+
+  .buy-now {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
